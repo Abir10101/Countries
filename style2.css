@@ -1,0 +1,69 @@
+.content-area.countries {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: center;
+	align-items: center;
+}
+.container {
+	display: inline-block;
+	background-color: var(--element);
+	box-shadow: var(--shadow);
+	border-radius: 7px;
+
+	margin: 10px 12px;
+	width: 15rem;
+
+	overflow: hidden;
+	cursor: pointer;	
+	transition: 300ms ease;
+}
+.container:hover {
+	transform: scale(1.08);
+}
+.flag {
+	height: 10rem;
+	overflow: hidden;
+}
+.flag img {
+	object-fit: cover;
+	width: 100%;
+	height: 100%;
+	pointer-events: none;
+	/*transition: 300ms ease;*/
+}
+.info {
+	color: var(--text);
+	padding: 1em;
+}
+.info p {
+	margin: 5px 0;
+	font-size: 0.85rem;
+	pointer-events: none;
+}
+.info .name {
+	font-weight: 800;
+	margin-bottom: 0.5em;
+	font-size: 1.1rem;
+}
+
+.load-more {
+	background-color: var(--element);
+	color: var(--text);
+	border: none;
+	border-radius: 6px;
+	cursor: pointer;
+
+	padding: 0.5em 0.8em;
+	font-size: 1rem;
+	font-family: 'Nunito Sans', sans-serif;
+}
+.content-area.load-btn {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+
+	margin: 2rem auto;
+}
+.load-btn.hide {
+	display: none;
+}

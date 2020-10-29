@@ -1,0 +1,172 @@
+@import url('https://fonts.googleapis.com/css2?family=Nunito+Sans:ital,wght@0,300;0,600;0,800;1,300;1,600;1,800&display=swap');
+
+:root {
+	--element: hsl(209,23%,22%);
+	--background: hsl(207,26%,15%);
+	--text: hsl(0, 0%, 90%);
+	--input: hsl(0, 0%, 52%);
+	--shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+*,
+*:focus {
+	box-sizing: border-box;
+	outline: none;
+	user-select: none;
+	overflow-anchor: none;
+}
+p {
+	margin: 0;
+}
+body {
+	max-width: 100vw;
+	margin: 0;
+	padding: 0;
+	font-family: 'Nunito Sans', sans-serif;
+	background-color: var(--background);
+	letter-spacing: 0.8px;
+}
+.content-area {
+	margin: 0 auto;
+	padding: 0 2rem;
+	max-width: 1200px;
+}
+
+/*-------------- NAV STYLES -------------------*/
+header {
+	background-color: var(--element);
+	color: var(--text);
+	box-shadow: var(--shadow);
+	position: sticky;
+	top: 0;
+	z-index: 1;
+}
+.content-area.header {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	text-align: center;
+}
+.right {
+	font-weight: 600;
+	margin-left: 1rem;
+}
+
+
+/*-------------------SEARCH BAR---------------------*/
+.content-area.search-bar {
+	padding: 2rem 3rem;
+	display: flex;
+	justify-content: space-between;
+	flex-wrap: wrap;
+	flex-basis: 100%;
+}
+.search {
+	background-color: var(--element);
+	color: var(--text);
+	box-shadow: var(--shadow);
+
+	border-radius: 6px;
+
+	padding: 0.4rem; 
+	margin-bottom: 1.5rem;
+	
+
+	display: flex;
+	align-items: center;
+}
+.search input {
+	background-color: transparent;
+	color: var(--text);
+	border: none;
+
+	font-family: 'Nunito Sans', sans-serif;
+	font-size: 1em;
+	letter-spacing: 1px;
+	margin-left: 8px;
+
+	width: 25vw;
+	min-width: 145px;
+	max-width: 525px;
+}
+.search input::placeholder {
+	color: var(--input);
+	font-weight: 600;
+}
+
+
+.filter {
+	position: relative;
+	font-weight: 600;
+	min-width: 153px;
+}
+.selected {
+	display: flex;
+	align-items: center;
+}
+.selected svg {
+	margin-left: 5px;
+	transition: 300ms ease;
+}
+.selected,
+.unselected {
+	background-color: var(--element);
+	color: var(--text);
+	box-shadow: var(--shadow);
+
+	border-radius: 6px;
+
+	margin-bottom: 0.4rem;
+	padding: 0.4rem 1.1rem;
+	cursor: pointer;
+}
+.unselected {
+	position: absolute;
+	width: 100%;
+	margin-right: 1rem;
+	visibility: hidden;
+	opacity: 0;
+	transition: opacity 300ms ease-in-out;
+	padding: 0;
+}
+.unselected div {
+	padding: 0.8rem 1.2rem;
+	border-radius: 6px;
+}
+.unselected div:hover {
+	background-color: hsl(209,22%,20%);
+	transition: 300ms ease-in;
+	color: hsl(0, 0%, 70%);
+}
+.active .unselected {
+	visibility: visible;
+	opacity: 1;
+}
+.active svg {
+	transform: rotateX(180deg);
+	transition: 300ms ease;
+}
+
+@media screen and (max-width: 490px) {
+	.content-area.header,
+	.content-area.search-bar {
+		padding: 1em 1em;
+	}
+
+	.search input {
+		margin-left: 0; 
+	}
+	.search svg {
+		display: none;
+	}
+	
+	.filter {
+		font-weight: 300;
+		font-size: calc(0.5vw + 0.7rem);
+	}
+	.selected svg {
+		width: calc(0.5vw + 0.7rem);
+	}
+	.search input::placeholder {
+		font-size: calc(0.5vw + 0.7rem);
+	}
+}

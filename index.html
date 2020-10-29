@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<script type="text/javascript" src="./jquery.js"></script>
+	<link rel="stylesheet" href="./style.css">
+	<link rel="stylesheet" href="./style2.css">
+	<link rel="stylesheet" href="./style3.css">
+	<title>Countries</title>
+</head>
+<body>
+
+	<!-- NAV -->
+	<header>
+		<div class="content-area header">
+			<h3>Know More about World</h3>
+			<div class="right">
+				<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-sun"><circle cx="12" cy="12" r="5" fill="currentColor"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg>
+			</div>	
+		</div>
+	</header>
+
+	<!-- MAIN CONTENT -->
+	<main> 
+		<div class="content-area search-bar">
+			<div class="search">
+				<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="hsl(0, 0%, 72%)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-search"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+				<input id="search-input" type="text" placeholder="Seach country..." />
+			</div>
+			<div class="filter">
+				<div class="selected">
+					<p>Filter By Region</p>					
+					<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-down"><polyline points="6 9 12 15 18 9"></polyline></svg>
+				</div>
+				<div class="unselected">
+					<div>All</div>
+					<div>Asia</div>
+					<div>Europe</div>
+					<div>Africa</div>
+					<div>Americas</div>
+					<div>Oceania</div>
+				</div>
+			</div>
+		</div>
+		<div class="content-area countries"></div>
+
+		<div class="content-area load-btn">
+			<button class="load-more">Load More..</button>			
+		</div>
+
+		<div class="slider">
+			<button class="slider-btn">
+				<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="hsl(0, 0%, 90%)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-left"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>
+				<span>Back</span>
+			</button>
+
+			<div class="slider-content">
+				<!-- <div class="slider-flag">
+					<img src="./afg.svg">
+				</div>
+				<div class="slider-info">
+					<h1>Afganistan</h1>
+					<div class="slider-detail">
+						<p>Native Name:hgsidgausg</p>
+						<p>Population</p>
+						<p>Region</p>
+						<p>Sub-Region</p>
+						<p>Capital</p>
+						<p>Domain</p>
+						<p>Currencies</p>
+						<p>Languages: Lorem ipsum dolor sit amet </p>
+						<p>Calling code</p>
+					</div>
+					<div class="slider-geography">
+						<span>Border Countries:</span>
+						<span class="country-names">
+							<div class="border-country">Pakistan</div>
+							<div class="border-country">Pakistan</div>
+							<div class="border-country">Pakistan</div>
+							<div class="border-country">Pakistan</div>
+							<div class="border-country">Pakistan</div>
+							<div class="border-country">Pakistan</div>
+						</span>
+					</div>
+				</div> -->
+			</div>
+		</div>
+	</main>
+
+	<!-- JavaScript -->
+	<script src="./app.js"></script>
+</body>
+</html>

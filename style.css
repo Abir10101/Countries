@@ -13,6 +13,7 @@
 	outline: none;
 	user-select: none;
 	overflow-anchor: none;
+	-webkit-tap-highlight-color: transparent;
 }
 p {
 	margin: 0;
@@ -98,7 +99,6 @@ header {
 	position: relative;
 	font-weight: 600;
 	min-width: 153px;
-	-webkit-tap-highlight-color: transparent;
 }
 .selected {
 	display: flex;

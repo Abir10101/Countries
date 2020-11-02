@@ -2,19 +2,19 @@
 let loadData = 12
 //------------------------------------------ EVENT LISTENERS -------------------------------------------------
 window.addEventListener('load', getData) //Load Data in DOM on page load
-document.querySelector('.selected').addEventListener('click', toggleFilter) //Toggle Filter Button
-document.querySelector('.unselected').addEventListener('click', filterData) //Filter countries by Region
+document.getElementsByClassName('selected')[0].addEventListener('click', toggleFilter) //Toggle Filter Button
+document.getElementsByClassName('unselected')[0].addEventListener('click', filterData) //Filter countries by Region
 document.getElementById('search-input').addEventListener('keyup', () => {
-	document.querySelector('.load-btn').classList.add('hide')
-	setTimeout(searchData , 2000)
+	document.getElementsByClassName('load-btn')[0].classList.add('hide')
+	setTimeout(searchData, 2000)
 }) // Search Countries
-document.querySelector('.load-more').addEventListener('click', getData) //Load More Data
-document.querySelector('.countries').addEventListener('click', sliderCountry) //Trigger Slider for full Details
-document.querySelector('.slider-btn').addEventListener('click', hideSlider) // Hide Slider
+document.getElementsByClassName('load-more')[0].addEventListener('click', getData) //Load More Data
+document.getElementsByClassName('countries')[0].addEventListener('click', sliderCountry) //Trigger Slider for full Details
+document.getElementsByClassName('slider-btn')[0].addEventListener('click', hideSlider) // Hide Slider
 
 // -------------------------------------------- FUNCTIONS ------------------------------------------------------
 function toggleFilter() {
-	document.querySelector('.filter').classList.toggle('active')
+	document.getElementsByClassName('filter')[0].classList.toggle('active') 
 }
 
 // Getting Data from API
@@ -28,11 +28,11 @@ function getData() {
 function filterData(e) {
 	let region = e.target.innerHTML
 	if (region === 'All') {
-		document.querySelector('.load-btn').classList.remove('hide')
+		document.getElementsByClassName('load-btn')[0].classList.remove('hide')
 		getData()
 		loadData = 12
 	} else {
-		document.querySelector('.load-btn').classList.add('hide')
+		document.getElementsByClassName('load-btn')[0].classList.add('hide')
 		return fetch('https://restcountries.eu/rest/v2/region/' + region)
 			.then(res => res.json())
 			.then(data => displayData(data))
@@ -45,7 +45,7 @@ function searchData(e) {
 	if (countryName === '') {
 		getData()
 		loadData = 12
-		document.querySelector('.load-btn').classList.remove('hide')
+		document.getElementsByClassName('load-btn')[0].classList.remove('hide')
 	} else {
 		return fetch('https://restcountries.eu/rest/v2/name/' + countryName)
 			.then(res => {
@@ -65,7 +65,8 @@ function searchData(e) {
 function displayData(countries) {
 	$(document).ready(function() {
 		$('.countries').html('')
-		for (let i = 0; i < loadData && i < countries.length; i++) {
+		let countryLength = countries.length
+		for (let i = 0; i < loadData && i < countryLength; i++) {
 			let name = countries[i].name
 			let population = countries[i].population
 			let region = countries[i].region
@@ -87,7 +88,7 @@ function displayData(countries) {
 				`)
 		}
 		loadData = loadData + 12
-	}) 
+	})
 }
 
 // Error when searching
@@ -106,7 +107,7 @@ function errorHandle() {
 // Getting Data for the Slider from API
 function sliderCountry(e) {
 	let countryName = e.target.parentNode.childNodes[3].childNodes[1].innerHTML
-	return fetch('https://restcountries.eu/rest/v2/name/'+ countryName +'?fullText=true')
+	return fetch('https://restcountries.eu/rest/v2/name/' + countryName + '?fullText=true')
 		.then(res => res.json())
 		.then(data => {
 			sliderDataDisplay(data[0])
@@ -117,7 +118,7 @@ function sliderCountry(e) {
 function sliderDataDisplay(country) {
 	$(document).ready(function() {
 		document.querySelector('main').classList.add('open-detail')
-		document.querySelector('.slider-content').innerHTML = ''
+		document.getElementsByClassName('slider-content')[0].innerHTML = ''
 
 		let name = country.name
 		let nativeName = country.nativeName
@@ -131,22 +132,24 @@ function sliderDataDisplay(country) {
 		let domain = country.topLevelDomain[0]
 
 		let borders = country.borders
-		let d = ''
-		if(borders.length === 0) {
-			d += `
+		let bordersDOM = ''
+		let borderLength = country.borders.length
+		
+		if (borderLength === 0) {
+			bordersDOM += `
 					<div class="border-country"> No Border Countries </div>
 			 `
-		} 
-		else {
-			for (i = 0; i < borders.length; i++) {
-				d += `
+		} else {
+			for (i = 0; i < borderLength; i++) {
+				bordersDOM += `
 					 	<div class="border-country">` + borders[i] + `</div>
 						`
 			}
-		}		
+		}
 
 		let languages = []
-		for (i = 0; i < country.languages.length; i++) {
+		let languageLength = country.languages.length
+		for (i = 0; i < languageLength; i++) {
 			languages.push(country.languages[i].name)
 		}
 
@@ -169,7 +172,7 @@ function sliderDataDisplay(country) {
 					</div>
 					<div class="slider-geography">
 						<span>Border Countries:</span>
-						<span class="country-names">` + d + `</span>						
+						<span class="country-names">` + bordersDOM + `</span>						
 					</div>
 				</div>
 			`)

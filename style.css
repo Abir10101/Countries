@@ -213,6 +213,11 @@ header {
 }
 
 /*--------------------------------------------- SLIDER  ------------------------------------ */
+.open-detail {
+	overflow-y: hidden;
+	height: 100vh;
+}
+
 .open-detail .slider {
 	transform: translateX(0);
 	opacity: 1;
@@ -231,6 +236,7 @@ header {
 	transform: translateX(-100%);
 	opacity: 0;
 	transition: all 300ms ease;
+	overflow-y: scroll;
 }
 .slider-btn {
 	background-color: var(--element);

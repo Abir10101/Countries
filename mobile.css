@@ -26,13 +26,6 @@
 
 /*--------------------------------------------- SLIDER  ------------------------------------ */
 @media screen and (max-width: 630px) {
-	.open-detail {
-		overflow-y: hidden;
-		height: 50vh;
-	}
-	.slider {
-		overflow-y: scroll;
-	}
 	.slider-content {
 		flex-direction: column;
 		justify-content: center;

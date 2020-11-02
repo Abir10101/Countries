@@ -2,7 +2,7 @@
 let loadData = 12
 //------------------------------------------ EVENT LISTENERS -------------------------------------------------
 window.addEventListener('load', () =>  {
-	setTimeout(getData, 1600)
+	setTimeout(getData, 2000)
 }) //Load Data in DOM on page load
 document.getElementsByClassName('selected')[0].addEventListener('click', toggleFilter) //Toggle Filter Button
 document.getElementsByClassName('unselected')[0].addEventListener('click', filterData) //Filter countries by Region

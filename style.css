@@ -215,7 +215,6 @@ header {
 /*--------------------------------------------- SLIDER  ------------------------------------ */
 .open-detail {
 	overflow-y: hidden;
-	height: 100vh;
 }
 
 .open-detail .slider {

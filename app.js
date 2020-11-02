@@ -14,14 +14,21 @@ document.getElementsByClassName('slider-btn')[0].addEventListener('click', hideS
 
 // -------------------------------------------- FUNCTIONS ------------------------------------------------------
 function toggleFilter() {
-	document.getElementsByClassName('filter')[0].classList.toggle('active') 
+	document.getElementsByClassName('filter')[0].classList.toggle('active')
 }
 
 // Getting Data from API
 function getData() {
-	return fetch('https://restcountries.eu/rest/v2/all')
-		.then(res => res.json())
-		.then(data => displayData(data))
+	if (localStorage.getItem('countries') === null) {
+		return fetch('https://restcountries.eu/rest/v2/all')
+			.then(res => res.json())
+			.then(data => {
+				localStorage.setItem('countries', JSON.stringify(data))
+				displayData(data)
+			})
+	} else {
+		displayData(JSON.parse(localStorage.getItem('countries')))
+	}
 }
 
 // Filtering the Data
@@ -31,11 +38,16 @@ function filterData(e) {
 		document.getElementsByClassName('load-btn')[0].classList.remove('hide')
 		getData()
 		loadData = 12
-	} else {
+	} else if (localStorage.getItem(region) === null) {
 		document.getElementsByClassName('load-btn')[0].classList.add('hide')
 		return fetch('https://restcountries.eu/rest/v2/region/' + region)
 			.then(res => res.json())
-			.then(data => displayData(data))
+			.then(data => {
+				localStorage.setItem(region, JSON.stringify(data))
+				displayData(data)
+			})
+	} else {
+		displayData(JSON.parse(localStorage.getItem(region)))
 	}
 }
 
@@ -107,11 +119,16 @@ function errorHandle() {
 // Getting Data for the Slider from API
 function sliderCountry(e) {
 	let countryName = e.target.parentNode.childNodes[3].childNodes[1].innerHTML
-	return fetch('https://restcountries.eu/rest/v2/name/' + countryName + '?fullText=true')
-		.then(res => res.json())
-		.then(data => {
-			sliderDataDisplay(data[0])
-		})
+	if (localStorage.getItem(countryName) === null) {
+		return fetch('https://restcountries.eu/rest/v2/name/' + countryName + '?fullText=true')
+			.then(res => res.json())
+			.then(data => {
+				localStorage.setItem(countryName, JSON.stringify(data[0]))
+				sliderDataDisplay(data[0])
+			})
+	} else {
+		sliderDataDisplay(JSON.parse(localStorage.getItem(countryName)))
+	}
 }
 
 // Display Data in the Slider
@@ -133,24 +150,23 @@ function sliderDataDisplay(country) {
 
 		let borders = country.borders
 		let bordersDOM = ''
-		let borderLength = country.borders.length
-		
-		if (borderLength === 0) {
+
+		if (borders.length === 0) {
 			bordersDOM += `
 					<div class="border-country"> No Border Countries </div>
 			 `
 		} else {
-			for (i = 0; i < borderLength; i++) {
+			for (let i in borders) {
 				bordersDOM += `
 					 	<div class="border-country">` + borders[i] + `</div>
 						`
 			}
 		}
 
-		let languages = []
-		let languageLength = country.languages.length
-		for (i = 0; i < languageLength; i++) {
-			languages.push(country.languages[i].name)
+		let languagesDOM = []
+		let languages = country.languages
+		for (let i in languages) {
+			languagesDOM.push(country.languages[i].name)
 		}
 
 		$('.slider-content').append(` 
@@ -166,7 +182,7 @@ function sliderDataDisplay(country) {
 						<p>Capital: ` + capital + `</p>
 						<p>Domain: ` + domain + `</p>
 						<p>Currencies: ` + currencies + `</p>
-						<p>Languages: ` + languages + `</p>
+						<p>Languages: ` + languagesDOM + `</p>
 						<p>Calling code: ` + callCode + `</p>
 						<p>Time Zone: ` + timeZone + `</p>
 					</div>

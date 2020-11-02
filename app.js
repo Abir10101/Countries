@@ -28,9 +28,11 @@ function getData() {
 function filterData(e) {
 	let region = e.target.innerHTML
 	if (region === 'All') {
+		document.querySelector('.load-btn').classList.remove('hide')
 		getData()
 		loadData = 12
 	} else {
+		document.querySelector('.load-btn').classList.add('hide')
 		return fetch('https://restcountries.eu/rest/v2/region/' + region)
 			.then(res => res.json())
 			.then(data => displayData(data))
@@ -85,7 +87,7 @@ function displayData(countries) {
 				`)
 		}
 		loadData = loadData + 12
-	})
+	}) 
 }
 
 // Error when searching

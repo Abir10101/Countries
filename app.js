@@ -22,7 +22,7 @@ function getData() {
 	if (localStorage.getItem('countries') === null) {
 		return fetch('https://restcountries.eu/rest/v2/all')
 			.then(res => res.json())
-			.then(data => {
+			.then(data => {			
 				localStorage.setItem('countries', JSON.stringify(data))
 				displayData(data)
 			})
@@ -66,7 +66,9 @@ function searchData(e) {
 				}
 				return res.json()
 			})
-			.then(data => displayData(data))
+			.then(data => {
+				displayData(data)
+			})
 			.catch(e => {
 				errorHandle()
 			})

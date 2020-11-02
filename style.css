@@ -187,7 +187,8 @@ header {
 	pointer-events: none;
 }
 .info .name {
-	font: 800 1.1rem;
+	font-weight: 800;
+	font-size: 1.1rem;
 	margin-bottom: 0.5em;
 }
 
